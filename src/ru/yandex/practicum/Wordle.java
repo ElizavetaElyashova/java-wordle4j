@@ -35,6 +35,7 @@ public class Wordle {
                 log.println("Ошибка: " + e.getMessage());
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
