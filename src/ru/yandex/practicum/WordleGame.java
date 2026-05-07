@@ -30,12 +30,12 @@ public class WordleGame {
 
 
     public WordleGame(WordleDictionary dictionary, PrintWriter log) {
+        this.dictionary = dictionary;
+        this.log = log;
         answer = guessWord();
         steps = 6;
-        this.dictionary = dictionary;
         input = new ArrayList<>();
         isWin = false;
-        this.log = log;
         computerGuess = new ArrayList<>(dictionary.getWords());
         wrongLetters = new HashSet<>();
         rightLetters = new HashSet<>();
