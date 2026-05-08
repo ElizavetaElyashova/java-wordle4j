@@ -32,7 +32,7 @@ public class WordleGame {
     public WordleGame(WordleDictionary dictionary, PrintWriter log) {
 
         try {
-            if (!dictionary.getWords().isEmpty()){
+            if (!dictionary.getWords().isEmpty()) {
                 this.dictionary = dictionary;
                 this.log = log;
                 answer = guessWord();
