@@ -20,8 +20,8 @@ public class WordleDictionaryLoader {
     public WordleDictionary load() {
         List<String> words = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader("words_ru.txt", StandardCharsets.UTF_8))) {
-            while (reader.ready()) {
-                String word = reader.readLine();
+            String word;
+            while ((word = reader.readLine()) != null) {
                 if (WordleDictionary.checkLength(word)) {
                     words.add(WordleDictionary.normalize(word));
                 }

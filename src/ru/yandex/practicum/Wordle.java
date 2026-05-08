@@ -45,6 +45,9 @@ public class Wordle {
             try {
                 System.out.println("Введите слово: ");
                 String guess = scan.nextLine();
+                if (!game.checkLanguage(guess)) {
+                    throw new IncorrectInput("Используйте только русские буквы.\n");
+                }
                 if (guess.isEmpty()) {
                     guess = game.giveGuess();
                     log.println("Вариант компьютера: " + guess);
@@ -54,6 +57,8 @@ public class Wordle {
                     log.println("Вариант пользователя: " + guess);
                 }
                 if (guess.equals(game.getAnswer())) {
+                    System.out.println("+++++");
+                    game.setSteps(game.getSteps() - 1);
                     game.setWin(true);
                     break;
                 }

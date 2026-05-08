@@ -30,16 +30,25 @@ public class WordleGame {
 
 
     public WordleGame(WordleDictionary dictionary, PrintWriter log) {
-        this.dictionary = dictionary;
-        this.log = log;
-        answer = guessWord();
-        steps = 6;
-        input = new ArrayList<>();
-        isWin = false;
-        computerGuess = new ArrayList<>(dictionary.getWords());
-        wrongLetters = new HashSet<>();
-        rightLetters = new HashSet<>();
-        word = new char[]{'-', '-', '-', '-', '-'};
+
+        try {
+            if (!dictionary.getWords().isEmpty()){
+                this.dictionary = dictionary;
+                this.log = log;
+                answer = guessWord();
+                steps = 6;
+                input = new ArrayList<>();
+                isWin = false;
+                computerGuess = new ArrayList<>(dictionary.getWords());
+                wrongLetters = new HashSet<>();
+                rightLetters = new HashSet<>();
+                word = new char[]{'-', '-', '-', '-', '-'};
+            } else {
+                throw new EmptyDictionary("Словарь игры пуст");
+            }
+        } catch (EmptyDictionary e) {
+            log.println("Ошибка: " + e.getMessage());
+        }
     }
 
     public String getAnswer() {
@@ -166,5 +175,15 @@ public class WordleGame {
         }
         int rnd = (int) ((computerGuess.size() - 1) * Math.random());
         return computerGuess.get(rnd);
+    }
+
+    public boolean checkLanguage(String input) {
+        input = input.toLowerCase();
+        for (int i = 0; i < input.length(); i++) {
+            if (!(input.charAt(i) >= 'а' && input.charAt(i) <= 'я')) {
+                return false;
+            }
+        }
+        return true;
     }
 }
